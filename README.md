@@ -21,4 +21,4 @@ host bastion
 
 bastion_IP = 35.207.109.237
 
-someinternalhost_IP = 10.156.0.4
+someinternalhost_IP = 10.156.0.6

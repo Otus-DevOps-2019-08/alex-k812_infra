@@ -1,8 +1,24 @@
 # alex-k812_infra
 alex-k812 Infra repository
 
+# Homework 5
+## Create GCP image with Packer.
+1. Создан шаблон Пакера ubuntu16.json для образа reddit-base
+1. Создан шаблон immutable.json для образа reddit-full
+1. Создан файл с переменными для сборки образов.
+1. Добавлены скрипты для установки образ Ruby, Mongodb, Puma и создания сервиса puma.service с помощью systemd.
+1. Создан скрипт для сборки готовой ВМ reddit-app  из образа reddit-full:
+gcloud compute --project=infra-253316 instances create reddit-app \
+--image-family=reddit-full \
+--image-project=infra-253316 \
+--zone=europe-west3-c \
+--machine-type=f1-micro \
+--tags puma-server \
+--restart-on-failure
+
+
 # Homework 4
-### Create Instance, FW Rule and deploy app
+## Create Instance, FW Rule and deploy app
 1. Развернута ВМ, на ней развернуты Ruby, MongoDB, поднят Puma сервер.
 1. Созданы скрипты: install_ruby.sh для установки Ruby, install_mongodb.sh для MongoDB, deploy.sh для развертывания приложения на web-сервере Puma.
 1. Создан общий скрипт startup_script.sh для автоматизации процесса присоздании ВМ на GCP.

@@ -3,8 +3,8 @@
         {
 	    "type": "googlecompute",
 	    "project_id": "{{user `prj_id`}}",
-	    "image_name": "reddit-base-{{timestamp}}",
-	    "image_family": "reddit-base",
+	    "image_name": "reddit-full-{{timestamp}}",
+	    "image_family": "reddit-full",
 	    "source_image_family": "{{user `src_imgfam`}}",
 	    "zone": "europe-west1-b",
 	    "ssh_username": "ak",
@@ -26,6 +26,16 @@
             "type": "shell",
             "script": "scripts/install_mongodb.sh",
             "execute_command": "sudo {{.Path}}"
-        }
+        },
+	{
+	    "type": "shell",
+	    "script": "scripts/deploy.sh",
+	    "execute_command": "sudo {{.Path}}"
+	},
+	{
+	    "type": "shell",
+	    "script": "scripts/create_service.sh",
+	    "execute_command": "sudo {{.Path}}"
+	}
     ]
 }

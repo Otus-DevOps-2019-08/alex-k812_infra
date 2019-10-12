@@ -1,6 +1,9 @@
 variable project {
   description = "Project ID"
 }
+variable name {
+  default = "reddit-app"
+}
 variable region {
   description = "Default instance region"
   # Значение по умолчанию
@@ -22,5 +25,9 @@ variable zone {
   description = "Default instance zone"
 }
 variable sshuser {
-  type = list(string)
+  type        = list(string)
+  description = "List of ssh users"
+}
+variable vmcount {
+  default = 1
 }

@@ -21,7 +21,7 @@ resource "google_compute_project_metadata_item" "project_ssh" {
 }
 
 resource "google_compute_instance" "app" {
-  name         = "reddit-app"
+  name         = "reddit-app-${count.index}"
   machine_type = "g1-small"
   zone         = var.zone
   tags         = ["puma-server"]
@@ -30,6 +30,7 @@ resource "google_compute_instance" "app" {
       image = var.disk_image
     }
   }
+  count = var.vmcount
   metadata = {
     ssh-keys = "ak:${file(var.pubkeypath)}"
   }
@@ -58,18 +59,15 @@ resource "google_compute_instance" "app" {
 }
 
 resource "google_compute_firewall" "firewall_puma" {
+  project = var.project
   name = "default-puma-server"
-  # Название сети, в которой действует правило
   network = "default"
-  # Какой доступ разрешить
+#  Block for health check GC addresses
+#  source_ranges = ["130.211.0.0/22", "35.191.0.0/16"]
   allow {
     protocol = "tcp"
     ports    = ["9292"]
   }
-  # Каким адресам разрешаем доступ
   source_ranges = ["0.0.0.0/0"]
-  # Правило применимо для инстансов с перечисленными тэгами
   target_tags = ["puma-server"]
 }
-
-

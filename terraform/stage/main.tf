@@ -6,30 +6,30 @@ terraform {
 provider "google" {
   version = "2.15"
   project = var.project
-  region = var.region
+  region  = var.region
 }
 
 module "app" {
-  source = "../modules/app"
-  project = var.project
-  pubkeypath = var.pubkeypath
-  prvkeypath = var.prvkeypath
-  zone = var.zone
+  source         = "../modules/app"
+  project        = var.project
+  pubkeypath     = var.pubkeypath
+  prvkeypath     = var.prvkeypath
+  zone           = var.zone
   disk_image_app = var.disk_image_app
-  dbip = module.db.db_int_ip
+  dbip           = module.db.db_int_ip
 }
 
 module "db" {
-  source = "../modules/db"
-  project = var.project
-  pubkeypath = var.pubkeypath
-  prvkeypath = var.prvkeypath
-  zone = var.zone
+  source        = "../modules/db"
+  project       = var.project
+  pubkeypath    = var.pubkeypath
+  prvkeypath    = var.prvkeypath
+  zone          = var.zone
   disk_image_db = var.disk_image_db
 }
 
 module "vpc" {
-  source = "../modules/vpc"
-  project = var.project
-  source_ranges = ["195.239.74.44/32"]
+  source        = "../modules/vpc"
+  project       = var.project
+  source_ranges = ["0.0.0.0/0"]
 }

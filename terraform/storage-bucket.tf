@@ -5,9 +5,9 @@ provider "google" {
 }
 
 module "storage-bucket" {
-  source  = "SweetOps/storage-bucket/google"
-  version = "0.3.0"
-  name    = "test-bucket-${var.project}"
+  source   = "SweetOps/storage-bucket/google"
+  version  = "0.3.0"
+  name     = "test-bucket-${var.project}"
   location = var.region
 }
 

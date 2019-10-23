@@ -4,3 +4,6 @@ packer/variables.json
 *.tfstate.backup
 *.tfvars
 .terraform/
+terraform/prod/.terraform
+terraform/stage/.terraform
+terraform/.terraform

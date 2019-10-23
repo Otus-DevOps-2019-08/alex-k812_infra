@@ -4,7 +4,7 @@ Description=PumaWebServer
 After=network.target
 
 [Service]
-Type=forking
+Type=simple
 User=ak
 Group=ak
 ExecStart=/usr/local/bin/puma

@@ -30,21 +30,21 @@ resource "google_compute_instance" "app" {
     }
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo export DATABASE_URL=\"${var.dbip}\" >> ~/.profile"
-    ]
-  }
-
-  provisioner "remote-exec" {
-    script = "${path.module}/files/deploy.sh"
-  }
-
-  provisioner "file" {
-    source      = "${path.module}/files/puma.service"
-    destination = "/tmp/puma.service"
+#  provisioner "remote-exec" {
+#    inline = [
+#      "echo export DATABASE_URL=\"${var.dbip}\" >> ~/.profile"
+#    ]
+#  }
+#
+#  provisioner "remote-exec" {
+#    script = "${path.module}/files/deploy.sh"
+#  }
+#
+#  provisioner "file" {
+#    source      = "${path.module}/files/puma.service"
+#    destination = "/tmp/puma.service"
 #    destination = "/etc/systemd/system/puma.service"
-  }
+#  }
 }
 
 resource "google_compute_firewall" "firewall_puma" {

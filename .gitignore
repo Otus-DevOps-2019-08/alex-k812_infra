@@ -7,3 +7,4 @@ packer/variables.json
 terraform/prod/.terraform/*
 terraform/stage/.terraform/*
 terraform/.terraform/*
+terraform/.terraform/
